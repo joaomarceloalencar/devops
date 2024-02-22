@@ -1,0 +1,3 @@
+# Não colocar os arquivos de configuração do Terraform.
+.terraform/
+.terraform*
