@@ -1,25 +1,25 @@
 ---
 - hosts: web
   tasks:
-  - name: install and check nginx latest version
+  - name: Instalar nginx 
     become: true
     apt: 
       name: nginx 
       state: latest
       update_cache: true  
-  - name: start nginx
+  - name: Iniciar o nginx
     service:
       name: nginx
       state: started
 - hosts: bancodedados
   tasks:
-  - name: install and check mysql latest version
+  - name: Instalar o MySQL Server
     become: true
     apt: 
       name: mysql-server
       state: latest
       update_cache: true  
-  - name: start mysql
+  - name: Iniciar o MySQL Server
     service:
       name: mysql
       state: started
