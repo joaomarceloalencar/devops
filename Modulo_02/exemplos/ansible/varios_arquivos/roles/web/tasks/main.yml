@@ -1,3 +1,4 @@
+---
 - name: Instalar nginx
   become: true
   apt:

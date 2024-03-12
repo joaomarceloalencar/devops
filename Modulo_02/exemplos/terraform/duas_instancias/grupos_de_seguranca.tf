@@ -25,8 +25,8 @@ resource "aws_vpc_security_group_ingress_rule" "permitir_http_ipv4_web" {
 
 resource "aws_vpc_security_group_egress_rule" "trafego_saida_web" {
   security_group_id = aws_security_group.web.id
-  cidr_ipv4   = "0.0.0.0/0"
-  ip_protocol = "-1"
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1"
 }
 
 resource "aws_security_group" "bancodedados" {
@@ -56,8 +56,8 @@ resource "aws_vpc_security_group_ingress_rule" "permitir_http_ipv4_bd" {
 
 resource "aws_vpc_security_group_egress_rule" "trafego_saida_bd" {
   security_group_id = aws_security_group.bancodedados.id
-  cidr_ipv4   = "0.0.0.0/0"
-  ip_protocol = "-1"
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1"
 }
 
 
