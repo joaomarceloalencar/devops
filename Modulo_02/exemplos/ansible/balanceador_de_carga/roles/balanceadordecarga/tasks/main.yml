@@ -1,0 +1,35 @@
+---
+- name: Instalar nginx
+  become: true
+  apt:
+    name: nginx
+    state: latest
+    update_cache: true
+- name: Remover a Configuração Padrão do Domínio nginx
+  become: true
+  ansible.builtin.file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+- name: Criar Configuração do Domínio Padrão no nginx
+  become: true
+  ansible.builtin.copy:
+    dest: "/etc/nginx/sites-available/default"
+    content: |
+      upstream samplecluster {
+         server {{ web01_private_ip }}:80;
+         server {{ web02_private_ip }}:80;
+      }
+      server {
+         listen 80;
+         server_name _;
+
+         location / {
+            include proxy_params;
+            proxy_pass http://samplecluster/;
+         }
+      }
+- name: Iniciar nginx
+  service: 
+    name: nginx
+    state: started
+-

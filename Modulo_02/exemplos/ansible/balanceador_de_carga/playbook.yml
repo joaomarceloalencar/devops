@@ -1,0 +1,10 @@
+---
+- hosts: tag_Name_balanceadordecarga 
+  roles:
+    - balanceadordecarga
+- hosts: tag_Name_web01
+  roles:
+    - web
+- hosts: tag_Name_web02
+  roles:
+    - web

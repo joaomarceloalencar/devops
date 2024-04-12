@@ -1,0 +1,112 @@
+---
+- name: Instalar nginx
+  become: true
+  apt:
+    name: nginx
+    state: latest
+    update_cache: true
+- name: Iniciar nginx
+  service: 
+    name: nginx
+    state: started
+- name: Instalar Ambiente Python
+  become: true
+  apt:
+    pkg:
+      - python3-pip
+      - python3-venv
+      - python3-dev 
+      - build-essential 
+      - libssl-dev 
+      - libffi-dev 
+      - python3-setuptools
+    state: latest
+    update_cache: true
+- name: Criar diretório para o projeto.
+  ansible.builtin.file:
+    path: ~/myproject 
+    state: directory
+- name: Criar o virtualenv
+  command:
+    cmd: python3 -m venv ~/myproject/myprojectenv
+    creates: "~/myproject/myprojectenv"
+- name: Instalar as dependências
+  shell: "~/myproject/myprojectenv/bin/pip3 install wheel gunicorn flask"
+- name: Criar Arquivo da Aplicação
+  ansible.builtin.copy:
+    dest: "~/myproject/myproject.py"
+    content: |
+      import socket
+      from flask import Flask
+      app = Flask(__name__)
+
+      @app.route("/")
+      def hello():
+         local_ip = socket.gethostbyname(socket.gethostname())
+         return "<h1 style='color:blue'>" + local_ip + "</h1>"
+
+      if __name__ == "__main__":
+         app.run(host='0.0.0.0')
+- name: Criar conector WSGI
+  ansible.builtin.copy:
+    dest: "~/myproject/wsgi.py"
+    content: |
+      from myproject import app
+      if __name__ == "__main__":
+         app.run()
+- name: Criar Configuração do Serviço 
+  become: true
+  ansible.builtin.copy:
+    dest: "/etc/systemd/system/myproject.service"
+    content: |
+      [Unit]
+      Description=Gunicorn instance to serve myproject
+      After=network.target
+
+      [Service]
+      User=ubuntu
+      Group=www-data
+      WorkingDirectory=/home/ubuntu/myproject
+      Environment="PATH=/home/ubuntu/myproject/myprojectenv/bin"
+      ExecStart=/home/ubuntu/myproject/myprojectenv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 wsgi:app
+
+      [Install]
+      WantedBy=multi-user.target
+- name: Remover a Configuração Padrão do Domínio nginx
+  become: true
+  ansible.builtin.file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+- name: Criar Configuração do Domínio Padrão no nginx
+  become: true
+  ansible.builtin.copy:
+    dest: "/etc/nginx/sites-available/default"
+    content: |
+      server {
+         listen 80;
+         server_name _;
+
+         location / {
+            include proxy_params;
+            proxy_pass http://127.0.0.1:5000;
+         }
+      }
+- name: Reinicializar o nginx
+  become: true
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: nginx
+    daemon_reload: true
+- name: "Permissões para Acesso ao Socket" 
+  become: true
+  ansible.builtin.file:
+    path: /home/ubuntu
+    state: directory
+    recurse: yes
+    mode: '0751'
+- name: Inicializar o Serviço
+  become: true
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: myproject
+    enabled: true	
