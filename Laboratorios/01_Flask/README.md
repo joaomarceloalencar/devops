@@ -17,7 +17,7 @@ pip install Flask
 pip install Flask-SQLAlchemy
 git clone https://github.com/joaomarceloalencar/devops
 cd devops/Laboratorios/01_Flask
-python3 src/app.py
+python3 src/todolist.py
 ```
 
 ## Comandos Para Configuração em Ambiente de Produção
@@ -25,8 +25,8 @@ python3 src/app.py
 Vamos considerar os comandos abaixo executados como _root_, prefixando com _sudo_:
 
 ```bash
-apt update
-apt install python3-venv python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+apt-get update
+apt-get -y install python3-venv python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
 mkdir /todolist
 cd /todolist
 python3 -m venv venv
