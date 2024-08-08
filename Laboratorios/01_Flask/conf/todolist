@@ -1,9 +1,9 @@
 server {
     listen 80;
-    server_name todolist www.todolist;
+    server_name _;
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/todolist/todolist.sock;
+        proxy_pass http://unix:/todolist/devops/Laboratorios/01_Flask/src/todolist.sock;
     }
 }

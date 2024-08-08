@@ -8,6 +8,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+with app.app_context():
+    db.create_all()
+
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
@@ -41,6 +44,4 @@ def delete(todo_id):
     return redirect(url_for("home"))
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(host='0.0.0.0', debug=True)
