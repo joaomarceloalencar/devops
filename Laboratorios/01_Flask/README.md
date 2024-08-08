@@ -34,11 +34,12 @@ python3 -m venv venv
 pip install wheel
 pip install gunicorn Flask Flask-SQLAlchemy
 git clone https://github.com/joaomarceloalencar/devops
-cp /todolist/devops/Laboratorios/01_Flask/conf/todolist.service /etc/systemd/system/
 chown ubuntu:www-data /todolist/devops/Laboratorios/01_Flask/src
+cp /todolist/devops/Laboratorios/01_Flask/conf/todolist.service /etc/systemd/system/
 systemctl start todolist
 systemctl enable todolist 
 cp /todolist/devops/Laboratorios/01_Flask/conf/todolist /etc/nginx/sites-available/
+ln -s /etc/nginx/sites-available/todolist /etc/nginx/sites-enabled/
 rm /etc/nginx/sites-enabled/default
 systemctl restart nginx
 ```
