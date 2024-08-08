@@ -2,7 +2,7 @@
 
 Fonte original: [Tutorial](https://www.python-engineer.com/posts/flask-todo-app/)
 
-## Comandos para configuração em ambiente de Desenvolvimento
+## Comandos Para Configuração em Ambiente de Desenvolvimento
 
 Na pasta do usuário comum:
 
@@ -20,3 +20,19 @@ cd devops/Laboratorios/01_Flask
 python3 src/app.py
 ```
 
+## Comandos Para Configuração em Ambiente de Produção
+
+Vamos considerar os comandos abaixo executados como _root_, prefixando com _sudo_:
+
+```bash
+apt update
+apt install python3-venv python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+mkdir /todolist
+cd /todolist
+python3 -m venv venv
+. venv/bin/activate
+pip install wheel
+pip install gunicorn Flask Flask-SQLAlchemy
+git clone https://github.com/joaomarceloalencar/devops
+
+```
