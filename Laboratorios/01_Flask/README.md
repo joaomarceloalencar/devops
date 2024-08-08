@@ -22,6 +22,9 @@ python3 src/todolist.py
 
 ## Comandos Para Configuração em Ambiente de Produção
 
+Fonte original: [Tutorial](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04-pt)
+
+
 Vamos considerar os comandos abaixo executados como _root_. Assuma o usuário com o comando _sudo su - root_:
 
 ```bash
