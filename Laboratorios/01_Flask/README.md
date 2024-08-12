@@ -30,7 +30,7 @@ Por fim, clonamos o repositório e executamos a aplicação em modo de desenvolv
 ```bash
 git clone https://github.com/joaomarceloalencar/devops
 cd devops/Laboratorios/01_Flask
-python3 src/todolist.py
+python3 main.py
 ```
 
 ## Comandos Para Configuração em Ambiente de Produção
