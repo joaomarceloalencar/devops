@@ -4,17 +4,30 @@ Fonte original: [Tutorial](https://www.python-engineer.com/posts/flask-todo-app/
 
 ## Comandos Para Configuração em Ambiente de Desenvolvimento
 
-Na pasta do usuário comum:
+Estas etapas correspondem a utilizar a instância na AWS como ambiente de desenvolvimento, acessando-a pelo _Visual Studio Code_. Na pasta do usuário comum:
 
+Primeiro, atualizar os pacotes e instalar o pacote _venv_ do _Python_.
 ```bash
 sudo apt-get update
 sudo apt-get -y install python3-venv
-mkdir myproject
-cd myproject
+```
+
+Vamos criar um diretório e criar um ambiente _Python_ para instalar as dependências.
+```bash
+mkdir todolist
+cd todolist
 python3 -m venv venv
+```
+
+Em seguida, ativamos o ambiente e instalamos as dependências:
+```bash
 . venv/bin/activate
 pip install Flask
 pip install Flask-SQLAlchemy
+```
+Por fim, clonamos o repositório e executamos a aplicação em modo de desenvolvimento:
+
+```bash
 git clone https://github.com/joaomarceloalencar/devops
 cd devops/Laboratorios/01_Flask
 python3 src/todolist.py
