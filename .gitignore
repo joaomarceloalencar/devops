@@ -1,4 +1,20 @@
-# Não colocar os arquivos de configuração do Terraform.
+# Arquivos e diretórios gerados pelo Terraform
 .terraform/
-.terraform*
-terraform.tfstate*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Arquivos de configuração específicos do ambiente
+terraform.rc
+*.tfvars
+
+# Arquivos de plano de execução do Terraform
+*.tfplan
+*.tfplan.*
+
+# Outros arquivos que podem conter informações sensíveis
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
