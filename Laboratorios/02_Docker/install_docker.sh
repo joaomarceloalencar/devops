@@ -24,4 +24,4 @@ apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Add the current user to the Docker group. 
-adduser $USER docker
+adduser $SUDO_USER docker
