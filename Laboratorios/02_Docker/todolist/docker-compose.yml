@@ -11,7 +11,7 @@ services:
       - todolist 
 
   app:
-    image: todolist:latest 
+    image: todolist:sqllite 
     volumes:
       - ./instance:/app/instance
     networks:

@@ -13,8 +13,11 @@ class Todo(db.Model):
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
 
-with app.app_context():
-    db.create_all()
+try:
+    with app.app_context():
+        db.create_all()
+except IntegrityError as e:
+    print(f"Error: {e}")
     
 @app.route('/')
 def home():
