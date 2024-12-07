@@ -1,0 +1,39 @@
+---
+- name: Definir o nome do host do sistema para o nome do host do Ansible
+  become: true
+  shell: hostnamectl hostname "{{ inventory_hostname }}" 
+
+- name: Definir timezone para America/Fortaleza
+  become: true
+  shell: timedatectl set-timezone America/Fortaleza 
+
+- name: Atualizar o cache do APT
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Executar o dist-upgrade
+  become: true
+  apt:
+    upgrade: dist
+
+- name: Instalar o microk8s
+  become: true
+  snap:
+    name: microk8s
+    classic: yes
+
+- name: Adicionar o usuário ao grupo microk8s
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    groups: microk8s
+    append: yes
+
+- name: Alterar a propriedade do diretório .kube
+  become: true
+  file:
+    path: ~/.kube
+    owner: "{{ ansible_user }}"
+    recurse: yes
+    state: directory

@@ -1,0 +1,15 @@
+---
+- name: Adicionar worker01 ao cluster
+  become: true
+  shell: microk8s add-node | sed -n '5p'
+  register: worker01_command
+- name: Exibir comando para worker01
+  debug:
+    msg: "{{ worker01_command.stdout }}"
+- name: Adicionar worker02 ao cluster
+  become: true
+  shell: microk8s add-node | sed -n '5p'
+  register: worker02_command
+- name: Exibir comando para worker02
+  debug:
+    msg: "{{ worker02_command.stdout }}"

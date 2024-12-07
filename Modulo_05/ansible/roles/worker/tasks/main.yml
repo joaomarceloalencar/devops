@@ -1,0 +1,15 @@
+---
+- name: Exibir comando de ingresso do worker01 
+  debug:
+    var: hostvars.controller.worker01_command.stdout
+  when: inventory_hostname == 'worker01'  
+- name: Ingressar worker01 no cluster
+  command: "{{ hostvars.controller.worker01_command.stdout }}"
+  when: inventory_hostname == 'worker01'  
+- name: Exibir comando de ingresso do worker02 
+  debug:
+    var: hostvars.controller.worker02_command.stdout
+  when: inventory_hostname == 'worker02'  
+- name: Ingressar worker02 no cluster
+  command: "{{ hostvars.controller.worker02_command.stdout }}"
+  when: inventory_hostname == 'worker02'  

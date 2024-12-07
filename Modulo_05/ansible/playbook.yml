@@ -1,0 +1,9 @@
+---
+- hosts: control_plane 
+  roles:
+    - install
+    - controller
+- hosts: worker_plane
+  roles:
+    - install 
+    - worker
