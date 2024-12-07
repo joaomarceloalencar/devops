@@ -4,6 +4,7 @@
     var: hostvars.controller.worker01_command.stdout
   when: inventory_hostname == 'worker01'  
 - name: Ingressar worker01 no cluster
+  become: true
   command: "{{ hostvars.controller.worker01_command.stdout }}"
   when: inventory_hostname == 'worker01'  
 - name: Exibir comando de ingresso do worker02 
@@ -11,5 +12,6 @@
     var: hostvars.controller.worker02_command.stdout
   when: inventory_hostname == 'worker02'  
 - name: Ingressar worker02 no cluster
+  become: true
   command: "{{ hostvars.controller.worker02_command.stdout }}"
   when: inventory_hostname == 'worker02'  
