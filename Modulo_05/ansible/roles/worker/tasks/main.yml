@@ -2,7 +2,7 @@
 - name: Exibir comando de ingresso no cluster 
   debug:
     var: "{{ 'hostvars.controller.' ~  inventory_hostname  ~ '_command.stdout' }}"
-- name: Ingressar worker no cluster
+- name: Ingressar workers no cluster
   become: true
     #  shell: "{{ 'hostvars.controller.' ~  inventory_hostname  ~ '_command.stdout' }}"
   shell: "{{ hostvars['controller'][inventory_hostname ~ '_command'].stdout }}"
