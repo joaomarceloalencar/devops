@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-app
+spec:
+  replicas: 3 # Número de réplicas da sua aplicação
+  selector:
+    matchLabels:
+      app: todolist-app
+  template:
+    metadata:
+      labels:
+        app: todolist-app
+    spec:
+      containers:
+      - name: todolist-app
+        image: todolist-postgres:latest # Substitua pelo nome da sua imagem Docker
+        ports:
+        - containerPort: 8000
