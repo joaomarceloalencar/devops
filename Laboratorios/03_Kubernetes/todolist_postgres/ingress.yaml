@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: todolist-ingress
   namespace: todolist
-  annotations:
-    kubernetes.io/ingress.class: "nginx" # Adicione esta linha
 spec:
+  ingressClassName: nginx
   rules:
   - host: todolist.local # Substitua pelo seu domínio
     http:
