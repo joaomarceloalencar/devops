@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todolist-ingress
+  namespace: todolist
+  annotations:
+    kubernetes.io/ingress.class: "nginx" # Adicione esta linha
+spec:
+  rules:
+  - host: todolist.local # Substitua pelo seu domínio
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: todolist-service 
+            port:
+              number: 80
