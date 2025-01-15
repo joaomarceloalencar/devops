@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: todolist-app
 spec:
-  replicas: 3 # Número de réplicas da sua aplicação
+  replicas: 1 # Número de réplicas da sua aplicação
   selector:
     matchLabels:
       app: todolist-app
