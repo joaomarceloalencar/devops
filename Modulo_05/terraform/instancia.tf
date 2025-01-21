@@ -1,3 +1,4 @@
+# Conflito Artificial
 resource "aws_instance" "controller" {
   ami             = var.ami_id 
   instance_type   = "t2.medium"
