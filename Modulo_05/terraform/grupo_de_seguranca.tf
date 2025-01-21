@@ -27,9 +27,9 @@ resource "aws_vpc_security_group_ingress_rule" "permitir_ssh_ipv4" {
 resource "aws_vpc_security_group_ingress_rule" "permitir_http_ipv4" {
   security_group_id = aws_security_group.kubernetes.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 22
+  from_port         = 80 
   ip_protocol       = "tcp"
-  to_port           = 22
+  to_port           = 80
 }
 
 resource "aws_vpc_security_group_ingress_rule" "permitir_nodeport_ipv4" {
