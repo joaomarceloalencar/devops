@@ -1,7 +1,7 @@
 resource "aws_instance" "controller" {
   ami             = var.ami_id 
   instance_type   = "t2.medium"
-  key_name        = "vockey"
+  key_name        = "jmhal"
   security_groups = [ aws_security_group.kubernetes.name ]
   
   tags = {
@@ -12,7 +12,7 @@ resource "aws_instance" "controller" {
 resource "aws_instance" "worker01" {
   ami             = var.ami_id
   instance_type   = "t2.medium"
-  key_name        = "vockey"
+  key_name        = "jmhal"
   security_groups = [ aws_security_group.kubernetes.name ]
   
   tags = {
@@ -23,7 +23,7 @@ resource "aws_instance" "worker01" {
 resource "aws_instance" "worker02" {
   ami             = var.ami_id 
   instance_type   = "t2.medium"
-  key_name        = "vockey"
+  key_name        = "jmhal"
   security_groups = [ aws_security_group.kubernetes.name ]
   
   tags = {
