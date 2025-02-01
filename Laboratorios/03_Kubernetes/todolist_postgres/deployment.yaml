@@ -4,7 +4,7 @@ metadata:
   name: todolist-app
   namespace: todolist
 spec:
-  replicas: 1 # Número de réplicas da sua aplicação
+  replicas: 2 # Número de réplicas da sua aplicação
   selector:
     matchLabels:
       app: todolist-app
