@@ -5,14 +5,14 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ”O trabalho foi disparado automaticamente pelo evento ${{ github.event_name }}."
-      - run: echo ”O trabalho está executando em servidor ${{ runner.os }} hospedado pelo GitHub!"
-      - run: echo ”O nome do branch é ${{ github.ref }} e o repositório é ${{ github.repository }}."
+      - run: echo "O trabalho foi disparado automaticamente pelo evento ${{ github.event_name }}."
+      - run: echo "O trabalho está executando em servidor ${{ runner.os }} hospedado pelo GitHub!"
+      - run: echo "O nome do branch é ${{ github.ref }} e o repositório é ${{ github.repository }}."
       - name: Recuperar Código do Repositório
         uses: actions/checkout@v4
-      - run: echo ”O código do repositório ${{ github.repository }} foi clonado para o executor.”
-      - run: echo ”O fluxo de trabalho está pronto para testar o código."
+      - run: echo "O código do repositório ${{ github.repository }} foi clonado para o executor.”
+      - run: echo "O fluxo de trabalho está pronto para testar o código."
       - name: Listar os arquivos no repositório.
         run: |
           ls ${{ github.workspace }}
-      - run: echo ”O status do trabalho é ${{ job.status }}."
+      - run: echo "O status do trabalho é ${{ job.status }}."
