@@ -10,7 +10,7 @@ jobs:
       - run: echo "O nome do branch é ${{ github.ref }} e o repositório é ${{ github.repository }}."
       - name: Recuperar Código do Repositório
         uses: actions/checkout@v4
-      - run: echo "O código do repositório ${{ github.repository }} foi clonado para o executor.”
+      - run: echo "O código do repositório ${{ github.repository }} foi clonado para o executor."
       - run: echo "O fluxo de trabalho está pronto para testar o código."
       - name: Listar os arquivos no repositório.
         run: |
