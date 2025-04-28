@@ -1,0 +1,56 @@
+# .github/workflows/ci.yml
+
+# Nome do Workflow que aparecerá na aba Actions do GitHub
+name: CI Python Flask
+
+# Gatilhos: Quando este workflow deve ser executado
+on:
+  push: # Executa em pushes para qualquer branch
+    branches: [ main ] # Pode restringir a branches específicas, como 'main'
+  pull_request: # Executa em pull requests para branches específicas
+    branches: [ main ]
+
+# Trabalhos (Jobs): Conjunto de tarefas a serem executadas
+jobs:
+  # Nome do job (pode ser qualquer nome)
+  build-and-test:
+    # Runner: O tipo de máquina virtual onde o job será executado
+    runs-on: ubuntu-latest # Usaremos a versão mais recente do Ubuntu Linux
+
+    # Passos (Steps): Sequência de tarefas que compõem o job
+    steps:
+      # Passo 1: Checkout do código do repositório
+      # Usa uma Action pré-feita pela comunidade (actions/checkout)
+      - name: Checkout repository code
+        uses: actions/checkout@v4 # Sempre bom usar uma versão específica
+
+      # Passo 2: Configurar o ambiente Python
+      # Usa outra Action pré-feita (actions/setup-python)
+      - name: Set up Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Especifique a versão do Python desejada
+
+      # Passo 3: Instalar dependências
+      # Executa comandos shell diretamente
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Passo 4: Lint com flake8 (Verificação de estilo)
+      # Opcional, mas recomendado para qualidade de código
+      - name: Lint with flake8
+        run: |
+          # --count: mostra o número total de erros
+          # --show-source: mostra a linha do código com erro
+          # --statistics: mostra contagem de erros/avisos
+          flake8 . --count --show-source --statistics
+          # Para falhar o workflow se houver erros de lint, não é preciso flag extra.
+          # Se quisesse apenas avisar, poderia usar: flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      # Passo 5: Executar testes com pytest
+      - name: Run tests with pytest
+        run: |
+          export PYTHONPATH=.  # Adiciona o diretório raiz ao PYTHONPATH
+          pytest tests/        # Executa os testes na pasta 'tests'

@@ -1,0 +1,5 @@
+# requirements.txt
+Flask>=2.0
+# Para testes e linting (podem ser adicionados separadamente em requirements-dev.txt em projetos maiores)
+pytest>=7.0
+flake8>=5.0
