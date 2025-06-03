@@ -21,3 +21,7 @@ override.tf.json
 
 # Banco de Dados
 *instance/*
+
+
+.DS_Store*
+.fuse*
